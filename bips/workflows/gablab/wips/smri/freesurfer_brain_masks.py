@@ -25,11 +25,11 @@ Config
 
 class config(BaseWorkflowConfig):
     uuid = traits.Str(desc="UUID")
-
+    SUBJECTS_DIR = os.environ['SUBJECTS_DIR'] if 'SUBJECTS_DIR' in os.environ.keys() else ''
     # Directories
     base_dir = Directory(os.path.abspath('.'),mandatory=True, desc='Base directory of data. (Should be subject-independent)')
     sink_dir = Directory(mandatory=True, desc="Location where the BIP will store the results")
-    surf_dir = Directory(os.environ['SUBJECTS_DIR'],desc='Freesurfer subjects dir')
+    surf_dir = Directory(SUBJECTS_DIR,desc='Freesurfer subjects dir')
     save_script_only = traits.Bool(False)
     
     # Subjects
